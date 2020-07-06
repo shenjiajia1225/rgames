@@ -1,0 +1,156 @@
+syntax = "proto3";
+package protocol;
+
+// 游戏id
+enum GameId {
+    None = 0;
+    Hzmj = 101;
+    Ddz = 102;
+}
+
+// 房间状态
+enum RoomState {
+    Idle = 0;
+    Wait = 1;
+    Gaming = 2;
+    Closing = 3;
+}
+
+// 离开房间原因
+enum LeaveReason {
+    Unknown = 0;
+    ConnBreak = 1; // 断线
+    Kick = 2;
+    Force = 3;
+    UserOp = 4; // 主动离开
+}
+
+// 房间结束原因
+enum RoomCloseReason {
+    Normal = 0;
+    Expire = 1;
+    ForceClose = 2;
+    Empty = 3;
+}
+
+// 游戏状态
+enum UserGameState {
+    Watching = 0;
+    UnReady = 1;
+    Ready = 2;
+    Playing = 3;
+
+}
+
+// 通用协议
+
+message UserInfo {
+    int64 userid = 1;
+    string nickname = 2;
+    string header = 3;
+    int32 seat = 4;
+    uint32 state = 5;
+    string jdata = 6;
+}
+
+message KeepAlive
+{
+}
+message CSLoginReq
+{
+	string account = 1;
+	string passwd = 2;
+	int32 gameid = 3;
+	string jdata = 4;
+}
+message SCLoginRsp
+{
+    int32 result = 1;
+    int32 gameid = 2;
+    string jdata = 3;
+}
+
+message CSCreateRoomReq
+{
+	string passwd = 1;
+	int32 count = 2;
+	int32 round = 3;
+	string jdata = 4;
+}
+message SCCreateRoomRsp
+{
+    int32 result = 1;
+    int64 roomid = 2;
+    string jdata = 3;
+}
+
+message CSEnterRoomReq
+{
+    int64 roomid = 1;
+	string passwd = 2;
+}
+message SCEnterRoomRsp
+{
+    int32 result = 1;
+    int64 roomid = 2;
+}
+message SCEnterRoomNtf
+{
+    UserInfo uinfo = 1;
+}
+message SCRoomUserInfos
+{
+    repeated UserInfo uinfo = 1;
+}
+
+message CSLeaveRoomReq
+{
+    int32 reason = 1;
+}
+message SCLeaveRoomRsp
+{
+    int32 result = 1;
+}
+message SCLeaveRoomNtf
+{
+    UserInfo uinfo = 1;
+}
+
+message SCGameRoomInfo
+{
+    UserInfo uinfo = 1;
+}
+
+message CSReadyReq
+{
+}
+message SCReadyRsp
+{
+    int32 result = 1;
+}
+message SCReadyNtf
+{
+    UserInfo uinfo = 1;
+}
+
+message CSCancelReadyReq
+{
+}
+message SCCancelReadyRsp
+{
+    int32 result = 1;
+}
+message SCCancelReadyNtf
+{
+    UserInfo uinfo = 1;
+}
+
+message SCGameStartNtf
+{
+}
+message SCGameEndNtf
+{
+}
+message SCRoundEndNtf
+{
+}

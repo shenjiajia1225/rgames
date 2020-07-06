@@ -1,0 +1,13 @@
+syntax = "proto3";
+package protocol;
+
+enum ErrNo {
+    Success = 0;
+    BreakEnter = 1;
+    Unknow = -1;
+    AleardyInRoom = -11;
+    NotInRoom = -12;
+    RoomInGame = -13;
+    NotInSeat = -14;
+    InvalidState = -15;
+}

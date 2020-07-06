@@ -1,0 +1,42 @@
+syntax = "proto3";
+package protocol;
+
+import "common.proto";
+
+message pb
+{
+    string cmd = 1;
+    int32 gameid = 2;
+    int64 roomid = 3;
+    int64 tserver = 4;
+
+    KeepAlive keepAlive = 100;  // cmd = KeepAlive
+	CSLoginReq loginReq = 101;  // cmd = Login
+	SCLoginRsp loginRsp = 102;  // cmd = LoginRsp
+
+	CSCreateRoomReq createRoomReq = 103; // cmd = CreateRoom
+	SCCreateRoomRsp createRoomRsp = 104; // cmd = CreateRoomRsp
+
+	CSEnterRoomReq enterRoomReq = 105;  // cmd = EnterRoom
+	SCEnterRoomRsp enterRoomRsp = 106;  // cmd = EnterRoomRsp
+	SCEnterRoomNtf enterRoomNtf = 107;  // cmd = EnterRoomNtf
+	SCRoomUserInfos roomUserInfos = 108;// cmd = RoomUserInfos
+
+	CSLeaveRoomReq leaveRoomReq = 109;  // cmd = LeaveRoom
+    SCLeaveRoomRsp leaveRoomRsp = 110;  // cmd = LeaveRoomRsp
+    SCLeaveRoomNtf leaveRoomNtf = 111;  // cmd = LeaveRoomNtf
+
+    SCGameRoomInfo gameRoomInfo = 112;  // cmd = GameRoomInfo 断线重入游戏数据
+
+    CSReadyReq readyReq = 113; // cmd = Ready
+    SCReadyRsp readyRsp = 114; // cmd = ReadyRsp
+    SCReadyNtf readyNtf = 115; // cmd = ReadyNtf
+
+    CSCancelReadyReq cancelReadyReq = 116; // cmd = CancelReady
+    SCCancelReadyRsp cancelReadyRsp = 117; // cmd = CancelReadyRsp
+    SCCancelReadyNtf cancelReadyNtf = 118; // cmd = CancelReadyNtf
+
+    SCGameStartNtf gameStartNtf = 119; // cmd = GameStartNtf
+    SCGameEndNtf gameEndNtf = 120;     // cmd = GameEndNtf
+    SCRoundEndNtf roundEndNtf = 121;   // cmd = RoundEndNtf
+}

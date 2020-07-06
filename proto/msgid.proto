@@ -1,0 +1,12 @@
+syntax = "proto3";
+package protocol;
+
+enum MsgId {
+    NO_USE = 0;
+    // 通用消息id
+    KEEP_ALIVE = 1;
+    CS_LOGIN_REQ = 1001;
+    SC_LOGIN_RSP = 2001;
+
+    // 各游戏消息id
+}
