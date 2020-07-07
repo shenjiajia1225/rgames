@@ -38,6 +38,16 @@ func (hm *HallMgr) Register(gameid int32, fc func(int32) HallImpl) {
 	utils.TLog.Info(fmt.Sprintf("Register game[%v]", gameid))
 }
 
+func (hm *HallMgr) UnRegisterAll() {
+	hm.Halls.IterCb(func(key string, v interface{}) {
+		h := v.(HallImpl)
+		if h != nil {
+			utils.TLog.Info(fmt.Sprintf("UnRegister game[%v]", h.GameID()))
+			h.Fini()
+		}
+	})
+}
+
 func (hm *HallMgr) CreateHall(gameid int32) {
 	cb, ok := hm.createCallbacks[gameid]
 	if ok {

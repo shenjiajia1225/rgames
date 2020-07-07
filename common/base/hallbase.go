@@ -37,6 +37,8 @@ type UserMessage struct {
 }
 
 type HallImpl interface {
+	Fini()
+	GameID() int32
 	SendMessage(um *UserMessage)
 	HandleOtherMessage(um *UserMessage)
 	Login(impl HallImpl, um *UserMessage)
@@ -84,6 +86,10 @@ func (h *HallBase) Fini() {
 	close(h.abort)
 }
 
+func (h *HallBase) GameID() int32 {
+	return h.GameId
+}
+
 func (h *HallBase) Run() {
 	go func() {
 		utils.TLog.Info(fmt.Sprintf("Hall[%v] Start", h.GameId))
@@ -97,11 +103,11 @@ func (h *HallBase) Run() {
 					}
 				}()
 			case <-h.abort:
-				func() {
-					utils.TLog.Info(fmt.Sprintf("Hall[%v] Stop", h.GameId))
-				}()
+				goto hallEnd
 			}
 		}
+	hallEnd:
+		utils.TLog.Info(fmt.Sprintf("Hall[%v] Stop", h.GameId))
 	}()
 }
 
