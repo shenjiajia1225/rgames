@@ -38,15 +38,15 @@ var MsgId_value = map[string]int32{
 func (x MsgId) String() string {
 	return proto.EnumName(MsgId_name, int32(x))
 }
-func (MsgId) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{0} }
+func (MsgId) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
 
 func init() {
 	proto.RegisterEnum("protocol.MsgId", MsgId_name, MsgId_value)
 }
 
-func init() { proto.RegisterFile("msgid.proto", fileDescriptor3) }
+func init() { proto.RegisterFile("msgid.proto", fileDescriptor4) }
 
-var fileDescriptor3 = []byte{
+var fileDescriptor4 = []byte{
 	// 116 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xce, 0x2d, 0x4e, 0xcf,
 	0x4c, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x00, 0x53, 0xc9, 0xf9, 0x39, 0x5a, 0x9e,

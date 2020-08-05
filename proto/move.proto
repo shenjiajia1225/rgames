@@ -1,0 +1,64 @@
+syntax = "proto3";
+package protocol;
+
+enum MoveType {
+    Direction = 0;
+    Targets = 1;
+    Stop = 2;
+}
+
+message Vec3
+{
+    int64 X = 1;
+    int64 Y = 2;
+    int64 Z = 3;
+}
+
+message CSEnterReq
+{
+    int64 Id = 1;
+    Vec3 Pos = 2;
+    Vec3 Dir = 3;
+}
+message SCEnterNtf
+{
+    int64 Id = 1;
+    Vec3 Pos = 2;
+    Vec3 Dir = 3;
+}
+
+message CSMoveStartReq
+{
+    int32 MvType = 1;
+    int32 Speed = 2;
+    repeated Vec3 coords = 3;
+}
+message SCMoveStartRsp
+{
+    int32 Ret = 1;
+}
+
+message CSMoveStopReq
+{
+}
+message SCMoveStopRsp
+{
+    int32 Ret = 1;
+    Vec3 Pos = 2;
+    Vec3 Dir = 3;
+}
+
+message MoveObjState
+{
+    int64 Id = 1;
+    int32 MvType = 2;
+    int32 Speed = 3;
+    repeated Vec3 coords = 4;
+}
+
+message SCMoveStateNtf
+{
+    repeated MoveObjState ms = 1;
+}
+
+

@@ -167,6 +167,14 @@ func (h *HallBase) CheckValid(account string, passwd string) int64 {
 	return -1
 }
 
+func (h *HallBase) BroadcastMsg(pbmsg *pb.Pb) {
+	for _, u := range h.umgr.Users {
+		if u != nil {
+			u.SendMsg(pbmsg)
+		}
+	}
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 func (h *HallBase) Inner_RemoveRoom(impl HallImpl, um *UserMessage) {

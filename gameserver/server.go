@@ -8,6 +8,7 @@ import (
 	"rgames/common/antnet"
 	"rgames/common/base"
 	"rgames/gameserver/ddz"
+	"rgames/gameserver/game1"
 	"rgames/gameserver/hzmj"
 	//"unsafe"
 
@@ -46,6 +47,7 @@ func (r *MyMsgHandler) OnConnectComplete(msgque antnet.IMsgQue, ok bool) bool { 
 func installGames() {
 	base.GetHallMgr().Register(int32(pb.GameId_Hzmj), hzmj.Create)
 	base.GetHallMgr().Register(int32(pb.GameId_Ddz), ddz.Create)
+	base.GetHallMgr().Register(int32(pb.GameId_Game1), game1.Create)
 }
 
 func unInstallGames() {

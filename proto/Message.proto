@@ -2,6 +2,7 @@ syntax = "proto3";
 package protocol;
 
 import "common.proto";
+import "move.proto";
 
 message pb
 {
@@ -39,4 +40,14 @@ message pb
     SCGameStartNtf gameStartNtf = 119; // cmd = GameStartNtf
     SCGameEndNtf gameEndNtf = 120;     // cmd = GameEndNtf
     SCRoundEndNtf roundEndNtf = 121;   // cmd = RoundEndNtf
+
+
+    // move proto
+    CSEnterReq enterReq = 201; // cmd = EnterScene
+    SCEnterNtf enterNtf = 202; // cmd = EnterSceneNtf
+    CSMoveStartReq moveStartReq = 203; // cmd = MoveStart
+    SCMoveStartRsp moveStartRsp = 204; // cmd = MoveStartRsp
+    CSMoveStopReq moveStopReq = 205; // cmd = MoveStop
+    SCMoveStopRsp moveStopRsp = 206; // cmd = MoveStopRsp
+    SCMoveStateNtf moveStateNtf = 207; // cmd = MoveStateNtf
 }
